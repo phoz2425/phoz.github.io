@@ -36,7 +36,6 @@ function startGame() {
     // Update the level display
     document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
 
-    // rest of your code...
     if (level < levels.length) {
         // Get the current character
         currentChar = levels[level][item][charIndex];
@@ -67,7 +66,6 @@ function startGame() {
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
     }
 }
-
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
