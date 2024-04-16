@@ -26,15 +26,18 @@ function startGame() {
             }
         });
 
-        // Show the items in the .container div
-        document.querySelector('.container').textContent = items.map(function(item) {
-            return item.number + item.letter;
-        }).join(', ');
+        // Show the number in the .container div
+        document.querySelector('.container').textContent = currentNumber;
 
-        // Wait for 1 second (1000 milliseconds) before showing the instructions and the textbox
+        // Wait for 1 second (1000 milliseconds) before showing the letter
         setTimeout(function() {
-            document.querySelector('.container').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.';
-            showTextbox();
+            document.querySelector('.container').textContent = currentLetter;
+
+            // Wait for another 1 second (1000 milliseconds) before showing the instructions and the textbox
+            setTimeout(function() {
+                document.querySelector('.container').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.';
+                showTextbox();
+            }, 1000);
         }, 1000);
     } else {
         // Show the number of correct answers
