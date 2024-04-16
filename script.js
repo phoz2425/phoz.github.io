@@ -1,8 +1,9 @@
 var correctAnswers = 0;
 var level = 0;
 var item = 0;
+var charIndex = 0;
 var items = [];
-var currentLetter, currentNumber;
+var currentChar;
 const levels = [
   // Level 1
   [
@@ -33,37 +34,29 @@ function startGame() {
     document.getElementById('startButton').style.display = 'none';
 
     if (level < levels.length) {
-        // Get the current item
-        var currentItem = levels[level][item];
+        // Get the current character
+        currentChar = levels[level][item][charIndex];
 
-        // Separate the numbers and letters
-        currentNumber = currentItem.filter(char => !isNaN(char));
-        currentLetter = currentItem.filter(char => isNaN(char));
+        // Show the character in the .container div
+        document.querySelector('.container').textContent = currentChar;
 
-        // Add the item to the items array
-        items.push({ number: currentNumber, letter: currentLetter });
-
-        // Show the letter in the .container div
-        document.querySelector('.container').textContent = currentLetter.join('');
-
-        // Wait for 1 second (1000 milliseconds) before showing the number
+        // Wait for 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
         setTimeout(function() {
-            document.querySelector('.container').textContent = currentNumber.join('');
-
-            // Wait for another 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
-            setTimeout(function() {
-                document.querySelector('.container').textContent = '';
-                document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
-                showTextbox();
-            }, 1000);
+            document.querySelector('.container').textContent = '';
+            document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
+            showTextbox();
         }, 1000);
 
-        // Move to the next item or level
-        if (item < levels[level].length - 1) {
+        // Move to the next character, item or level
+        if (charIndex < levels[level][item].length - 1) {
+            charIndex++;
+        } else if (item < levels[level].length - 1) {
             item++;
+            charIndex = 0;
         } else {
             level++;
             item = 0;
+            charIndex = 0;
         }
     } else {
         // Show the number of correct answers
@@ -71,29 +64,21 @@ function startGame() {
     }
 }
 
-// ... rest of the code remains the same ...
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
+    textbox.maxLength = 6; // Limit input to 6 characters
     textbox.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             // Check the answer
-            var answer = textbox.value.split(', ').map(function(item) {
-                var number = parseInt(item.match(/\d+/)[0]); // Extract the number
-                var letter = item.match(/[a-zA-Z]+/)[0]; // Extract the letter
-                return { number: number, letter: letter };
-            });
+            var answer = textbox.value;
 
-            if (JSON.stringify(answer) === JSON.stringify(items)) {
+            if (answer === currentChar) {
                 correctAnswers++;
             }
 
             // Remove the textbox
             document.querySelector('.container').removeChild(textbox);
-
-            // Reset the items array and the trials counter
-            items = [];
-            trials = 0;
 
             // Start the next round
             startGame();
