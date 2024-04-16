@@ -32,19 +32,26 @@ const levels = [
   let currentSequence = 0;
   
   function startGame() {
-    // Check if all levels have been completed
-    if (currentLevel >= levels.length) {
-      // Game over, show results
-      document.querySelector('.container').textContent = 'Game over. Correct answers: ' + correctAnswers + ', Wrong answers: ' + (levels.flat().length - correctAnswers);
-      return;
-    }
-  
-    // Get the current sequence
-    const sequence = levels[currentLevel][currentSequence];
-  
-    // Separate the sequence into numbers and letters
-    const numbers = sequence.filter(char => !isNaN(char)).sort();
-    const letters = sequence.filter(char => isNaN(char)).sort();
+  // Check if all levels have been completed
+  if (currentLevel >= levels.length) {
+    // Game over, show results
+    document.querySelector('.container').textContent = 'Game over. Correct answers: ' + correctAnswers + ', Wrong answers: ' + (levels.flat().length - correctAnswers);
+    return;
+  }
+
+  // Get the current sequence
+  const sequence = levels[currentLevel][currentSequence];
+
+  // Separate the sequence into numbers and letters
+  const numbers = sequence.filter(char => !isNaN(char));
+  const letters = sequence.filter(char => isNaN(char));
+
+  // Set the current number and letter
+  currentNumber = numbers[0];
+  currentLetter = letters[0];
+
+  // Rest of your code...
+}
     if (trials < 3) {
         // Generate a random letter
         currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
