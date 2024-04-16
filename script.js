@@ -19,23 +19,24 @@ function startGame() {
 
         // Sort the items array
         items.sort(function(a, b) {
-            if (a.number === b.number) {
-                return a.letter.localeCompare(b.letter);
-            } else {
-                return a.number - b.number;
-            }
-        });
+        if (a.number === b.number) {
+        return a.letter.localeCompare(b.letter);
+        } else {
+        return a.number - b.number;
+        }
+    });
 
-        // Show the number in the .container div
-        document.querySelector('.container').textContent = currentNumber;
+        // Show the letter in the .container div
+        document.querySelector('.container').textContent = currentLetter;
 
-        // Wait for 1 second (1000 milliseconds) before showing the letter
+        // Wait for 1 second (1000 milliseconds) before showing the number
         setTimeout(function() {
-            document.querySelector('.container').textContent = currentLetter;
+            document.querySelector('.container').textContent = currentNumber;
 
-            // Wait for another 1 second (1000 milliseconds) before showing the instructions and the textbox
+            // Wait for another 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
             setTimeout(function() {
-                document.getElementById('instructions').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.\n\n';
+                document.querySelector('.container').textContent = '';
+                document.getElementById('instructions').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.';
                 showTextbox();
             }, 1000);
         }, 1000);
@@ -44,7 +45,6 @@ function startGame() {
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
     }
 }
-
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
@@ -52,12 +52,12 @@ function showTextbox() {
         if (event.key === 'Enter') {
             // Check the answer
             var answer = textbox.value.split(', ').map(function(item) {
-                return { number: parseInt(item[0]), letter: item[1] };
-            });
+            return { number: parseInt(item[0]), letter: item[1] };
+    });
 
             if (JSON.stringify(answer) === JSON.stringify(items)) {
-                correctAnswers++;
-            }
+            correctAnswers++;
+    }
 
             // Remove the textbox
             document.querySelector('.container').removeChild(textbox);
