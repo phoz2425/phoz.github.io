@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Letter Sequencing Theory</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 800px;
-            margin: 1 auto;
-        }
-        h1, h2 {
-            color: #333;
-        }
-    </style>
+    <title>Letter Sequencing Theory Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="container">
