@@ -36,7 +36,7 @@ function startGame() {
             // Wait for another 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
             setTimeout(function() {
                 document.querySelector('.container').textContent = '';
-                document.getElementById('instructions').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.';
+                document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
                 showTextbox();
             }, 1000);
         }, 1000);
