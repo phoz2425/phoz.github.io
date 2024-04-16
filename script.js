@@ -4,6 +4,9 @@ var items = [];
 var currentLetter, currentNumber;
 
 function startGame() {
+    // Hide the start button
+    document.getElementById('startButton').style.display = 'none';
+
     if (trials < 3) {
         // Generate a random letter
         currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
@@ -28,9 +31,9 @@ function startGame() {
             return item.number + item.letter;
         }).join(', ');
 
-        // Wait for 1 second (1000 milliseconds) before clearing the .container div and showing the textbox
+        // Wait for 1 second (1000 milliseconds) before showing the instructions and the textbox
         setTimeout(function() {
-            document.querySelector('.container').textContent = '';
+            document.querySelector('.container').textContent = 'LETTER-NUMBER SEQUENCING\nEnter the digits from smallest to largest, and then the letters in alphabetical order.';
             showTextbox();
         }, 1000);
     } else {
