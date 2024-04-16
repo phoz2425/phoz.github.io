@@ -11,8 +11,8 @@ body {
 }
 
 .container {
-    background-color: #64e273; /* White background for the content */
-    border-radius: 25px; /* Rounded corners */
+    background-color: #3d9347;
+    border-radius: 25px; 
     padding: 20px;
     width: 80%;
     max-width: 800px;
