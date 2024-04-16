@@ -10,6 +10,10 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+#instructions {
+    text-align: center;
+    margin-bottom: 10px;
+}
 
 .container {
     background-color: #2ac33c; /* White background for the content */
