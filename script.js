@@ -31,7 +31,7 @@ const levels = [
   let currentLevel = 0;
   let currentSequence = 0;
   
-  function startGame() {
+function startGame() {
   // Check if all levels have been completed
   if (currentLevel >= levels.length) {
     // Game over, show results
@@ -50,46 +50,37 @@ const levels = [
   currentNumber = numbers[0];
   currentLetter = letters[0];
 
-  // Rest of your code...
-}
-    if (trials < 3) {
-        // Generate a random letter
-        currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  // Add the item to the items array
+  items.push({ number: currentNumber, letter: currentLetter });
 
-        // Generate a random number between 0 and 9
-        currentNumber = Math.floor(Math.random() * 10);
-
-        // Add the item to the items array
-        items.push({ number: currentNumber, letter: currentLetter });
-
-        // Sort the items array
-        items.sort(function(a, b) {
-        if (a.number === b.number) {
-        return a.letter.localeCompare(b.letter);
-        } else {
-        return a.number - b.number;
-        }
-    });
-
-        // Show the letter in the .container div
-        document.querySelector('.container').textContent = currentLetter;
-
-        // Wait for 1 second (1000 milliseconds) before showing the number
-        setTimeout(function() {
-            document.querySelector('.container').textContent = currentNumber;
-
-            // Wait for another 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
-            setTimeout(function() {
-                document.querySelector('.container').textContent = '';
-                document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
-                showTextbox();
-            }, 1000);
-        }, 1000);
+  // Sort the items array
+  items.sort(function(a, b) {
+    if (a.number === b.number) {
+      return a.letter.localeCompare(b.letter);
     } else {
+      return a.number - b.number;
+    }
+  });
+
+  // Show the letter in the .container div
+  document.querySelector('.container').textContent = currentLetter;
+
+  // Wait for 1 second (1000 milliseconds) before showing the number
+  setTimeout(function() {
+    document.querySelector('.container').textContent = currentNumber;
+
+    // Wait for another 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
+    setTimeout(function() {
+      document.querySelector('.container').textContent = '';
+      document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
+      showTextbox();
+    }, 1000);
+  }, 1000);
+} else {
         // Show the number of correct answers
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
     }
-}
+
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
