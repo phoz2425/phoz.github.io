@@ -28,9 +28,9 @@ const levels = [
     ]
   ];
 
-  let currentLevel = 0;
-  let currentSequence = 0;
-  
+let currentLevel = 0;
+let currentSequence = 0;
+
 function startGame() {
   // Check if all levels have been completed
   if (currentLevel >= levels.length) {
@@ -76,10 +76,7 @@ function startGame() {
       showTextbox();
     }, 1000);
   }, 1000);
-} else {
-        // Show the number of correct answers
-        document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
-    }
+}
 
 function showTextbox() {
     var textbox = document.createElement('input');
@@ -95,6 +92,13 @@ function showTextbox() {
 
             if (JSON.stringify(answer) === JSON.stringify(items)) {
                 correctAnswers++;
+                // If the answer is correct, increment currentSequence
+                // If currentSequence is equal to the number of sequences in the current level, increment currentLevel and set currentSequence back to 0
+                currentSequence++;
+                if (currentSequence >= levels[currentLevel].length) {
+                    currentLevel++;
+                    currentSequence = 0;
+                }
             }
 
             // Remove the textbox
