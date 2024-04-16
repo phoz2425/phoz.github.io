@@ -16,6 +16,7 @@ body {
 }
 
 .container {
+    /* Your existing styles for the square */
     background-color: #2ac33c; /* White background for the content */
     border-radius: 25px; /* Rounded corners */
     padding: 20px;
