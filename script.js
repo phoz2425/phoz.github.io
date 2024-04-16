@@ -28,22 +28,23 @@ const levels = [
     ]
   ];
 
-let currentLevel = 0;
-let currentSequence = 0;
-
-function startGame() {
-  // Get the current sequence
-  const sequence = levels[currentLevel][currentSequence];
-
-  // Separate the sequence into numbers and letters
-  const numbers = sequence.filter(char => !isNaN(char));
-  const letters = sequence.filter(char => isNaN(char));
-
-  // Now you can use the numbers and letters for the current sequence
-
-  // Hide the start button
-  document.getElementById('startButton').style.display = 'none';
-}
+  let currentLevel = 0;
+  let currentSequence = 0;
+  
+  function startGame() {
+    // Check if all levels have been completed
+    if (currentLevel >= levels.length) {
+      // Game over, show results
+      document.querySelector('.container').textContent = 'Game over. Correct answers: ' + correctAnswers + ', Wrong answers: ' + (levels.flat().length - correctAnswers);
+      return;
+    }
+  
+    // Get the current sequence
+    const sequence = levels[currentLevel][currentSequence];
+  
+    // Separate the sequence into numbers and letters
+    const numbers = sequence.filter(char => !isNaN(char)).sort();
+    const letters = sequence.filter(char => isNaN(char)).sort();
     if (trials < 3) {
         // Generate a random letter
         currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
@@ -115,3 +116,9 @@ function showTextbox() {
 }
 
 document.getElementById('startButton').addEventListener('click', startGame);
+function checkAnswer() {
+    // Check the user's answer
+  
+    // If the answer is correct, increment currentSequence
+    // If currentSequence is equal to the number of sequences in the current level, increment currentLevel and set currentSequence back to 0
+  }
