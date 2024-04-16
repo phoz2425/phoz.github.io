@@ -117,7 +117,9 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
-document.getElementById('startButton').addEventListener('click', startGame);
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('startButton').addEventListener('click', startGame);
+});
 function checkAnswer() {
     // Check the user's answer
   
