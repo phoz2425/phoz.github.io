@@ -33,6 +33,10 @@ function startGame() {
     // Hide the start button
     document.getElementById('startButton').style.display = 'none';
 
+    // Update the level display
+    document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
+
+    // rest of your code...
     if (level < levels.length) {
         // Get the current character
         currentChar = levels[level][item][charIndex];
