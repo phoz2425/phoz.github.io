@@ -3,10 +3,47 @@ var trials = 0;
 var items = [];
 var currentLetter, currentNumber;
 
-function startGame() {
-    // Hide the start button
-    document.getElementById('startButton').style.display = 'none';
+const levels = [
+    // Level 1
+    [
+      ['2', 'H'],
+      ['6', 'P']
+    ],
+    // Level 2
+    [
+      ['4', '7', 'O'],
+      ['3', '0', 'R']
+    ],
+    // Level 3
+    [
+      ['A', 'Z', '4', '7'],
+      ['P', 'J', '4', '8'],
+      ['L', 'J', '2', '3']
+    ],
+    // Level 4
+    [
+      ['L', 'B', 'J', '2', '3', '6'],
+      ['V', 'W', 'B', '9', '1', '8'],
+      ['K', 'B', 'R', '2', '4', '8']
+    ]
+  ];
 
+let currentLevel = 0;
+let currentSequence = 0;
+
+function startGame() {
+  // Get the current sequence
+  const sequence = levels[currentLevel][currentSequence];
+
+  // Separate the sequence into numbers and letters
+  const numbers = sequence.filter(char => !isNaN(char));
+  const letters = sequence.filter(char => isNaN(char));
+
+  // Now you can use the numbers and letters for the current sequence
+
+  // Hide the start button
+  document.getElementById('startButton').style.display = 'none';
+}
     if (trials < 3) {
         // Generate a random letter
         currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
