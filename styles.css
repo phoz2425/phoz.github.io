@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #ffffff; /* Light gray background */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    background-color: #fff; /* White background for the content */
+    background-color: #64e273; /* White background for the content */
     border-radius: 25px; /* Rounded corners */
     padding: 20px;
     width: 80%;
@@ -19,7 +19,16 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* A little shadow for depth */
     text-align: center; /* Center align the text */
 }
-
+#startButton {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #64e273; /* Blue background */
+    color: white; /* White text */
+    cursor: pointer; /* Cursor changes to hand icon when over the button */
+    margin-bottom: 20px; /* Space between the button and the container */
+}
 h1, h2 {
     color: #333;
 }
