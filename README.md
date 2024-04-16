@@ -13,10 +13,6 @@
            but with the digits coming first, ordered from smallest to largest, and then the letters in alphabetical order. 
            In this case, you'd have to type 24EH. Remember: you must first type all of the digits and only then type the letters, 
            both in ascending order (1 before 9, A before Z)!</p>
-        <h2>Examples</h2>
-        <p>Examples of the theory in action go here...</p>
-        <h2>Resources</h2>
-        <p>Links to further resources go here...</p>
     </div>
 </body>
 </html>
