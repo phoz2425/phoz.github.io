@@ -28,8 +28,11 @@ function startGame() {
             return item.number + item.letter;
         }).join(', ');
 
-        // Wait for 1 second (1000 milliseconds) before showing the textbox
-        setTimeout(showTextbox, 1000);
+        // Wait for 1 second (1000 milliseconds) before clearing the .container div and showing the textbox
+        setTimeout(function() {
+            document.querySelector('.container').textContent = '';
+            showTextbox();
+        }, 1000);
     } else {
         // Show the number of correct answers
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
