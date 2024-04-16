@@ -120,9 +120,3 @@ function showTextbox() {
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('startButton').addEventListener('click', startGame);
 });
-function checkAnswer() {
-    // Check the user's answer
-  
-    // If the answer is correct, increment currentSequence
-    // If currentSequence is equal to the number of sequences in the current level, increment currentLevel and set currentSequence back to 0
-  }
