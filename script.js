@@ -52,12 +52,14 @@ function showTextbox() {
         if (event.key === 'Enter') {
             // Check the answer
             var answer = textbox.value.split(', ').map(function(item) {
-            return { number: parseInt(item[0]), letter: item[1] };
-    });
+                var number = parseInt(item.match(/\d+/)[0]); // Extract the number
+                var letter = item.match(/[a-zA-Z]+/)[0]; // Extract the letter
+                return { number: number, letter: letter };
+            });
 
             if (JSON.stringify(answer) === JSON.stringify(items)) {
-            correctAnswers++;
-    }
+                correctAnswers++;
+            }
 
             // Remove the textbox
             document.querySelector('.container').removeChild(textbox);
