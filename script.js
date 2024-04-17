@@ -66,12 +66,12 @@ function showTextbox() {
 
 
 
-            if (answer === currentItem) {
-                correctAnswers++;
-                results.correct.push({level: level, item: item, answer: answer});
-            } else {
-                results.wrong.push({level: level, item: item, answer: answer});
-            }
+            if (answer === currentItem.join('')) {
+    correctAnswers++;
+    results.correct.push({level: level, item: item, answer: answer});
+} else {
+    results.wrong.push({level: level, item: item, answer: answer});
+}
 
 
             // Remove the textbox
@@ -93,15 +93,11 @@ function showTextbox() {
     // Add the textbox to the .container div
     document.querySelector('.container').appendChild(textbox);
 }
-
-window.onload = function() {
-    document.getElementById('startButton').addEventListener('click', startGame);
-}
-
 let results = {
     correct: correctAnswers,
-    wrong: wrongAnswers
+    wrong: results.wrong.length
 };
+
 
 fetch('http://localhost:3000/results', {
     method: 'POST',
@@ -119,3 +115,9 @@ fetch('http://localhost:3000/results', {
 }).catch(error => {
     console.error('Error:', error);
 });
+
+
+window.onload = function() {
+    document.getElementById('startButton').addEventListener('click', startGame);
+}
+
