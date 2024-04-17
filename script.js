@@ -24,30 +24,27 @@ function startGame() {
 
     if (level < levels.length) {
         // Get the current item
-        currentItem = levels[level][item].slice().sort(function(a, b) {
-            if (isNaN(a) && isNaN(b)) {
-                // Both are letters, compare them
-                return a.localeCompare(b);
-            } else if (!isNaN(a) && !isNaN(b)) {
-                // Both are numbers, compare them
-                return a - b;
-            } else if (!isNaN(a)) {
-                // a is a number, b is a letter, a comes first
-                return -1;
+        currentItem = levels[level][item].slice();
+        var charIndex = 0;
+
+        // Clear the .container div
+        document.querySelector('.container').textContent = '';
+
+        // Create a timer that will display the next character every second
+        var timer = setInterval(function() {
+            if (charIndex < currentItem.length) {
+                // Display the next character
+                document.querySelector('.container').textContent = currentItem[charIndex];
+                charIndex++;
             } else {
-                // a is a letter, b is a number, b comes first
-                return 1;
+                // All characters have been displayed, clear the timer and show the textbox
+                clearInterval(timer);
+                setTimeout(function() {
+                    document.querySelector('.container').textContent = '';
+                    showTextbox();
+                }, 1000);
             }
-        }).join('');
-
-        // Show the item in the .container div
-        document.querySelector('.container').textContent = currentItem;
-
-        // Wait for 1 second (1000 milliseconds) per character before clearing the .container div and showing the textbox
-        setTimeout(function() {
-            document.querySelector('.container').textContent = '';
-            showTextbox();
-        }, currentItem.length * 1000);
+        }, 1000);
     } else {
         // Show the number of correct answers
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
