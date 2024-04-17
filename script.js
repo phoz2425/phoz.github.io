@@ -86,4 +86,6 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
-document.getElementById('startButton').addEventListener('click', startGame);
+window.onload = function() {
+    document.getElementById('startButton').addEventListener('click', startGame);
+}
