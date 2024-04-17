@@ -9,6 +9,11 @@ var levels = [
 ];
 
 var gameResults = {
+    name: '',
+    email: '',
+    course: '',
+    year: '',
+    section: '',
     correct: [],
     wrong: []
 };
@@ -99,13 +104,12 @@ function showTextbox() {
 }
 
 window.onload = function() {
-    let name = prompt("Please enter your name:");
-    let email = prompt("Please enter your email:");
-    let course = prompt("Please enter your course:");
-    let year = prompt("Please enter your year:");
-    let section = prompt("Please enter your section:");
 
-    console.log(name, email, course, year, section);
+    gameResults.name = prompt("Please enter your name:");
+    gameResults.email = prompt("Please enter your email:");
+    gameResults.course = prompt("Please enter your course:");
+    gameResults.year = prompt("Please enter your year:");
+    gameResults.section = prompt("Please enter your section:");
 
     document.getElementById('startButton').addEventListener('click', startGame);
 }
