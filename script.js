@@ -15,8 +15,10 @@ var currentItem;
 
 function startGame() {
     // Hide the start button
-    document.getElementById('startButton').style.display = 'none';
-
+    var startButton = document.getElementById('startButton');
+    if (startButton) {
+        startButton.style.display = 'none';
+    }
     // Update the level display
     document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
 
