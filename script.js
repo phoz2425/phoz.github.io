@@ -8,7 +8,7 @@ var levels = [
     [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
 ];
 
-var results = {
+var gameResults = {
     correct: [],
     wrong: []
 };
@@ -83,7 +83,7 @@ fetch('http://localhost:3000/results', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify(results)
+    body: JSON.stringify(gameResults)
 }).then(response => {
     if (!response.ok) {
         throw new Error('Network response was not ok');
