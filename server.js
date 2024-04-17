@@ -13,22 +13,22 @@ MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }, (
 
     console.log('Connected to MongoDB');
     db = client.db('gameResults');
-});
 
-app.post('/results', (req, res) => {
-    const results = req.body;
+    app.post('/results', (req, res) => {
+        const results = req.body;
 
-    db.collection('results').insertOne(results, (err, result) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error storing results');
-            return;
-        }
+        db.collection('results').insertOne(results, (err, result) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error storing results');
+                return;
+            }
 
-        res.status(200).send('Results stored successfully');
+            res.status(200).send('Results stored successfully');
+        });
+    });
+
+    app.listen(3000, () => {
+        console.log('Server is running on port 3000');
     });
 });
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-}); 
