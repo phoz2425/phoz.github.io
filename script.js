@@ -1,4 +1,17 @@
+var correctAnswers = 0;
+// Define and initialize the variables
+var level = 0;
+var item = 0;
+var correctAnswers = 0;
+var levels = [
+    [['2', 'H'], ['6', 'P']],
+    [['4', '7', 'O'], ['8', '5', 'K']],
+    [['3', '3', 'A', 'Z'], ['7', '7', 'Q', 'W'], ['1', '1', 'S', 'D']],
+    [['6', '6', '6', 'U', 'U', 'U'], ['7', '7', '7', 'I', 'I', 'I'], ['8', '8', '8', 'O', 'O', 'O']]
+];
 
+// Rest of your code...
+var currentItem;
 
 function startGame() {
     // Hide the start button
