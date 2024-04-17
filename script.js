@@ -44,7 +44,6 @@ function startGame() {
             }
         }, 1000);
    } else {
-        document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
         storeResults();
         // Display "THANK YOU!" message
         var thankYouMessage = document.createElement('h1');
@@ -52,7 +51,6 @@ function startGame() {
         document.body.appendChild(thankYouMessage);
     }
 }
-
 function storeResults() {
     fetch('https://murmuring-coast-29338-fd46d18596e0.herokuapp.com/submit', {
         method: 'POST',
