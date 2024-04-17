@@ -54,7 +54,7 @@ function startGame() {
 }
 
 function storeResults() {
-    fetch('http://localhost:3000/results', {
+    fetch('https://murmuring-coast-29338-fd46d18596e0.herokuapp.com/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -113,21 +113,3 @@ window.onload = function() {
 
     document.getElementById('startButton').addEventListener('click', startGame);
 }
-
-
-fetch('http://localhost:3000/results', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(gameResults)
-}).then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return response.text();
-}).then(data => {
-    console.log('Results stored successfully');
-}).catch(error => {
-    console.error('Error:', error);
-});
