@@ -22,7 +22,21 @@ function startGame() {
 
     if (level < levels.length) {
         // Get the current item
-        currentItem = levels[level][item].join('');
+        currentItem = levels[level][item].slice().sort(function(a, b) {
+            if (isNaN(a) && isNaN(b)) {
+                // Both are letters, compare them
+                return a.localeCompare(b);
+            } else if (!isNaN(a) && !isNaN(b)) {
+                // Both are numbers, compare them
+                return a - b;
+            } else if (!isNaN(a)) {
+                // a is a number, b is a letter, a comes first
+                return -1;
+            } else {
+                // a is a letter, b is a number, b comes first
+                return 1;
+            }
+        }).join('');
 
         // Show the item in the .container div
         document.querySelector('.container').textContent = currentItem;
@@ -50,6 +64,7 @@ function showTextbox() {
             if (answer === currentItem) {
                 correctAnswers++;
             }
+
 
             // Remove the textbox
             document.querySelector('.container').removeChild(textbox);
