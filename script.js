@@ -120,4 +120,3 @@ fetch('http://localhost:3000/results', {
 window.onload = function() {
     document.getElementById('startButton').addEventListener('click', startGame);
 }
-
