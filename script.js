@@ -37,12 +37,12 @@ function startGame() {
                 document.querySelector('.container').textContent = currentItem[charIndex];
                 charIndex++;
             } else {
-                // All characters have been displayed, clear the timer and show the textbox
+                // All characters have been displayed, clear the timer
                 clearInterval(timer);
-                setTimeout(function() {
-                    document.querySelector('.container').textContent = '';
-                    showTextbox();
-                }, 1000);
+                // Clear the .container div
+                document.querySelector('.container').textContent = '';
+                // Wait for 1 second before showing the textbox
+                setTimeout(showTextbox, 1000);
             }
         }, 1000);
     } else {
@@ -50,7 +50,6 @@ function startGame() {
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
     }
 }
-
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
