@@ -10,6 +10,11 @@ var levels = [
     [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
 ];
 
+var results = {
+    correct: [],
+    wrong: []
+};
+
 // Rest of your code...
 var currentItem;
 
@@ -59,8 +64,13 @@ function showTextbox() {
             // Check the answer
             var answer = textbox.value;
 
+
+
             if (answer === currentItem) {
                 correctAnswers++;
+                results.correct.push({level: level, item: item, answer: answer});
+            } else {
+                results.wrong.push({level: level, item: item, answer: answer});
             }
 
 
@@ -87,3 +97,25 @@ function showTextbox() {
 window.onload = function() {
     document.getElementById('startButton').addEventListener('click', startGame);
 }
+
+let results = {
+    correct: correctAnswers,
+    wrong: wrongAnswers
+};
+
+fetch('http://localhost:3000/results', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(results)
+}).then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.text();
+}).then(data => {
+    console.log('Results stored successfully');
+}).catch(error => {
+    console.error('Error:', error);
+});
