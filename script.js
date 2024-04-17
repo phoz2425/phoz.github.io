@@ -41,6 +41,10 @@ function startGame() {
    } else {
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
         storeResults();
+        // Display "THANK YOU!" message
+        var thankYouMessage = document.createElement('h1');
+        thankYouMessage.textContent = 'THANK YOU!';
+        document.body.appendChild(thankYouMessage);
     }
 }
 
@@ -69,7 +73,7 @@ function showTextbox() {
     textbox.maxLength = currentItem.length;
     textbox.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            var answer = textbox.value;
+            var answer = textbox.value.toUpperCase(); // Convert input to uppercase
 
             if (answer === currentItem.join('')) {
                 correctAnswers++;
@@ -93,7 +97,6 @@ function showTextbox() {
 
     document.querySelector('.container').appendChild(textbox);
 }
-
 
 window.onload = function() {
     let name = prompt("Please enter your name:");
