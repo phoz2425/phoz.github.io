@@ -43,17 +43,32 @@ function startGame() {
         // Show the character in the .container div
         document.querySelector('.container').textContent = currentChar;
 
-        // Wait for 1 second (1000 milliseconds) before clearing the .container div and showing the instructions and the textbox
+        // Wait for 1 second (1000 milliseconds) before clearing the .container div and showing the next character
         setTimeout(function() {
             document.querySelector('.container').textContent = '';
-            document.getElementById('instructions').innerHTML = 'LETTER-NUMBER SEQUENCING<br>Enter the digits from smallest to largest, and then the letters in alphabetical order.';
-            showTextbox();
+
+            // Move to the next character, item or level
+            if (charIndex < levels[level][item].length - 1) {
+                charIndex++;
+            } else if (item < levels[level].length - 1) {
+                item++;
+                charIndex = 0;
+            } else {
+                level++;
+                item = 0;
+                charIndex = 0;
+            }
+
+            // Start the next round
+            startGame();
         }, 1000);
     } else {
         // Show the number of correct answers
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
     }
 }
+
+
 
 function showTextbox() {
     var textbox = document.createElement('input');
