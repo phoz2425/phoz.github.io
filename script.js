@@ -38,9 +38,29 @@ function startGame() {
                 setTimeout(showTextbox, 1000);
             }
         }, 1000);
-    } else {
+   } else {
         document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
+        storeResults();
     }
+}
+
+function storeResults() {
+    fetch('http://localhost:3000/results', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gameResults)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    }).then(data => {
+        console.log('Results stored successfully');
+    }).catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 function showTextbox() {
@@ -53,9 +73,9 @@ function showTextbox() {
 
             if (answer === currentItem.join('')) {
                 correctAnswers++;
-                results.correct.push({level: level, item: item, answer: answer});
+                gameResults.correct.push({level: level, item: item, answer: answer});
             } else {
-                results.wrong.push({level: level, item: item, answer: answer});
+                gameResults.wrong.push({level: level, item: item, answer: answer});
             }
 
             document.querySelector('.container').removeChild(textbox);
@@ -74,9 +94,19 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
+
 window.onload = function() {
+    let name = prompt("Please enter your name:");
+    let email = prompt("Please enter your email:");
+    let course = prompt("Please enter your course:");
+    let year = prompt("Please enter your year:");
+    let section = prompt("Please enter your section:");
+
+    console.log(name, email, course, year, section);
+
     document.getElementById('startButton').addEventListener('click', startGame);
 }
+
 
 fetch('http://localhost:3000/results', {
     method: 'POST',
