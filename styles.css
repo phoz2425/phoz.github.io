@@ -1,6 +1,6 @@
 body {
     position: relative;
-    background-color: #88f695;
+    background-color: #050505;
     font-family: Arial, sans-serif;
     height: 100vh;
     margin: 0;
@@ -31,7 +31,7 @@ body {
 
 .container {
     /* Your existing styles for the square */
-    background-color: #2ac33c; /* White background for the content */
+    background-color: #ffffff; /* White background for the content */
     border-radius: 25px; /* Rounded corners */
     padding: 20px;
     width: 80%;
@@ -48,13 +48,13 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #64e273; /* Blue background */
-    color: white; /* White text */
+    background-color: #ffffff; /* Blue background */
+    color: rgb(0, 0, 0); /* White text */
     cursor: pointer; /* Cursor changes to hand icon when over the button */
     margin-top: 20px; /* Space between the button and the container */
 }
 h1, h2 {
-    color: #333;
+    color: #020202;
 }
 
 p {
