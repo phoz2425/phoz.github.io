@@ -1,34 +1,121 @@
-const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
-const app = express();
-app.use(express.json());
+var correctAnswers = 0;
+// Define and initialize the variables
+var level = 0;
+var item = 0;
+var correctAnswers = 0;
+var levels = [
+    [['2', 'H'], ['6', 'P']],
+    [['4', '7', 'O'], ['8', '5', 'K']],
+    [['3', '7', 'A', 'Z'], ['7', '3', 'Q', 'W'], ['1', '4', 'S', 'D']],
+    [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
+];
 
-let db;
+var results = {
+    correct: [],
+    wrong: []
+};
 
-MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }, (err, client) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
+// Rest of your code...
+var currentItem;
+
+function startGame() {
+    // Hide the start button
+    var startButton = document.getElementById('startButton');
+    if (startButton) {
+        startButton.style.display = 'none';
     }
+    // Update the level display
+    document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
 
-    console.log('Connected to MongoDB');
-    db = client.db('gameResults');
-});
+    if (level < levels.length) {
+        // Get the current item
+        currentItem = levels[level][item].slice();
+        var charIndex = 0;
 
-app.post('/results', (req, res) => {
-    const results = req.body;
+        // Clear the .container div
+        document.querySelector('.container').textContent = '';
 
-    db.collection('results').insertOne(results, (err, result) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error storing results');
-            return;
+        // Create a timer that will display the next character every second
+        var timer = setInterval(function() {
+            if (charIndex < currentItem.length) {
+                // Display the next character
+                document.querySelector('.container').textContent = currentItem[charIndex];
+                charIndex++;
+            } else {
+                // All characters have been displayed, clear the timer
+                clearInterval(timer);
+                // Clear the .container div
+                document.querySelector('.container').textContent = '';
+                // Wait for 1 second before showing the textbox
+                setTimeout(showTextbox, 1000);
+            }
+        }, 1000);
+    } else {
+        // Show the number of correct answers
+        document.querySelector('.container').textContent = 'Correct answers: ' + correctAnswers;
+    }
+}
+function showTextbox() {
+    var textbox = document.createElement('input');
+    textbox.type = 'text';
+    textbox.maxLength = currentItem.length; // Limit input to the length of the current item
+    textbox.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            // Check the answer
+            var answer = textbox.value;
+
+
+
+            if (answer === currentItem) {
+                correctAnswers++;
+                results.correct.push({level: level, item: item, answer: answer});
+            } else {
+                results.wrong.push({level: level, item: item, answer: answer});
+            }
+
+
+            // Remove the textbox
+            document.querySelector('.container').removeChild(textbox);
+
+            // Move to the next item or level
+            if (item < levels[level].length - 1) {
+                item++;
+            } else {
+                level++;
+                item = 0;
+            }
+
+            // Start the next round
+            startGame();
         }
-
-        res.status(200).send('Results stored successfully');
     });
-});
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+    // Add the textbox to the .container div
+    document.querySelector('.container').appendChild(textbox);
+}
+
+window.onload = function() {
+    document.getElementById('startButton').addEventListener('click', startGame);
+}
+
+let results = {
+    correct: correctAnswers,
+    wrong: wrongAnswers
+};
+
+fetch('http://localhost:3000/results', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(results)
+}).then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.text();
+}).then(data => {
+    console.log('Results stored successfully');
+}).catch(error => {
+    console.error('Error:', error);
+}); 
