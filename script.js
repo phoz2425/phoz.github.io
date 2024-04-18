@@ -16,7 +16,7 @@ var gameResults = {
     section: '',
     correct: [],
     wrong: []
-}; 
+};
 
 var currentItem;
 
@@ -51,7 +51,9 @@ function startGame() {
 
         var timer = setInterval(function() {
             if (charIndex < currentItem.length) {
-                document.querySelector('.container').textContent = currentItem[charIndex];
+                var container = document.querySelector('.container');
+                container.textContent = currentItem[charIndex];
+                container.style.color = getRandomColor(); // Set the text color to a random color
                 charIndex++;
             } else {
                 clearInterval(timer);
@@ -68,6 +70,14 @@ function startGame() {
     }
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 function saveGameResults() {
     // Save the game results to the database
     database.ref('gameResults/').push(gameResults);
@@ -118,7 +128,6 @@ function showTextbox() {
 }
 
 window.onload = function() {
-
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
@@ -126,4 +135,4 @@ window.onload = function() {
     gameResults.section = prompt("Please enter your section(ex. 2B):");
 
     document.getElementById('startButton').addEventListener('click', startGame);
-}
+};
