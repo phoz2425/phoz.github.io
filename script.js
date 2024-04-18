@@ -127,7 +127,7 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', (event) => {
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
@@ -135,5 +135,4 @@ window.onload = function() {
     gameResults.section = prompt("Please enter your section(ex. 2B):");
 
     document.getElementById('startButton').addEventListener('click', startGame);
-};
- 
+});
