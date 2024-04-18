@@ -122,7 +122,7 @@ function startGame() {
 // Display "THANK YOU!" message inside the square
 var thankYouMessage = document.createElement('h1');
 thankYouMessage.textContent = 'THANK YOU!';
-thankYouMessage.style.color = 'white';
+thankYouMessage.style.color = 'red';
 square.appendChild(thankYouMessage);
         document.body.appendChild(square);
     }
