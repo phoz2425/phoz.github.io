@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    var startButton = document.getElementById('startButton');
+    if (startButton) {
+        startButton.addEventListener('click', startGame);
+    }
+
+    gameResults.name = prompt("Please enter your name:");
+    gameResults.email = prompt("Please enter your email:");
+    gameResults.course = prompt("Please enter your course (ex. BSP):");
+    gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
+    gameResults.section = prompt("Please enter your section(ex. 2B):");
+});
 
 
 var correctAnswers = 0;
@@ -133,15 +145,3 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    var startButton = document.getElementById('startButton');
-    if (startButton) {
-        startButton.addEventListener('click', startGame);
-    }
-
-    gameResults.name = prompt("Please enter your name:");
-    gameResults.email = prompt("Please enter your email:");
-    gameResults.course = prompt("Please enter your course (ex. BSP):");
-    gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
-    gameResults.section = prompt("Please enter your section(ex. 2B):");
-});
