@@ -19,24 +19,30 @@
             </div>
         </div>
         <button id="startButton">Start Game</button>
-        <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js"></script>
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
         <script>
             // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-              apiKey: "AIzaSyA4Ob5S6BZlYJ2d_0kRJd-7E5JLC2XUk-w",
-              authDomain: "lnsapp-e6d13.firebaseapp.com",
-              projectId: "lnsapp-e6d13",
-              storageBucket: "lnsapp-e6d13.appspot.com",
-              messagingSenderId: "692983724897",
-              appId: "1:692983724897:web:cea4a895d7df8b414ca320",
-              measurementId: "G-B0BBD5MF52"
+            var firebaseConfig = {
+                apiKey: "AIzaSyA4Ob5S6BZlYJ2d_0kRJd-7E5JLC2XUk-w",
+                authDomain: "lnsapp-e6d13.firebaseapp.com",
+                databaseURL: "https://lnsapp-e6d13-default-rtdb.firebaseio.com/",
+                projectId: "lnsapp-e6d13",
+                storageBucket: "lnsapp-e6d13.appspot.com",
+                messagingSenderId: "692983724897",
+                appId: "1:692983724897:web:cea4a895d7df8b414ca320"
             };
-          
             // Initialize Firebase
-            const app = firebase.initializeApp(firebaseConfig);
-            const analytics = firebase.analytics(app);
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
         </script>
         <script src="script.js"></script>
     </body>
