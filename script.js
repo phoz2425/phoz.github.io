@@ -117,9 +117,13 @@ function startGame() {
         square.style.justifyContent = 'center';
         square.style.alignItems = 'center';
         // Display "THANK YOU!" message inside the square
-        var thankYouMessage = document.createElement('h1');
-        thankYouMessage.textContent = 'THANK YOU!';
-        square.appendChild(thankYouMessage);
+        // Other code
+
+// Display "THANK YOU!" message inside the square
+var thankYouMessage = document.createElement('h1');
+thankYouMessage.textContent = 'THANK YOU!';
+thankYouMessage.style.color = 'white';
+square.appendChild(thankYouMessage);
         document.body.appendChild(square);
     }
 }
