@@ -115,12 +115,18 @@ function startGame() {
         document.body.appendChild(thankYouMessage);
     }
 }
-
 window.onload = function() {
     // Initialize Firebase
     initializeApp(firebaseConfig);
     // Get a reference to the database service
     database = getDatabase();
+
+    // Ask the user for their information
+    gameResults.name = prompt('Please enter your name: ');
+    gameResults.email = prompt('Please enter your email: ');
+    gameResults.course = prompt('Please enter your course(EX. BSP): ');
+    gameResults.year = prompt('Please enter your year(EX. 1ST):');
+    gameResults.section = prompt('Please enter your section(EX. 2B): ');
 
     // Add this code to handle start button click
     var startButton = document.getElementById('startButton');
