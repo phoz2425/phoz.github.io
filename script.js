@@ -1,38 +1,35 @@
 window.onload = function() {
-    var startButton = document.getElementById('startButton');
-    if (startButton) {
-        startButton.addEventListener('click', startGame);
-    }
+    var gameResults = {
+        name: '',
+        email: '',
+        course: '',
+        year: '',
+        section: '',
+        correct: [],
+        wrong: []
+    };
 
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
     gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
     gameResults.section = prompt("Please enter your section(ex. 2B):");
-};
 
+    var correctAnswers = 0;
+    var level = 0;
+    var item = 0;
+    var levels = [
+        [['2', 'H'], ['6', 'P']],
+        [['4', '7', 'O'], ['8', '5', 'K']],
+        [['3', '7', 'A', 'Z'], ['7', '3', 'Q', 'W'], ['1', '4', 'S', 'D']],
+        [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
+    ];
 
-var correctAnswers = 0;
-var level = 0;
-var item = 0;
-var levels = [
-    [['2', 'H'], ['6', 'P']],
-    [['4', '7', 'O'], ['8', '5', 'K']],
-    [['3', '7', 'A', 'Z'], ['7', '3', 'Q', 'W'], ['1', '4', 'S', 'D']],
-    [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
-];
+    var currentItem;
 
-var gameResults = {
-    name: '',
-    email: '',
-    course: '',
-    year: '',
-    section: '',
-    correct: [],
-    wrong: []
-};
-
-var currentItem;
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', startGame);
+}
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
 
