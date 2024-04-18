@@ -60,7 +60,3 @@ h1, h2 {
 p {
     line-height: 1.6;
 }
-#levels-output {
-    font-size: 2em; /* This makes the font size 2 times larger than the base font size */
-    font-weight: bold; /* This makes the font bold */
-}
