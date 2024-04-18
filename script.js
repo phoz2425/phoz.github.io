@@ -4,9 +4,7 @@ import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.6.1
 var gameResults = {
     name: '',
     email: '',
-    course: '',
-    year: '',
-    section: '',
+    college: '',
     correct: [],
     wrong: []
 };
@@ -130,11 +128,9 @@ window.onload = function() {
     database = getDatabase();
 
     // Ask the user for their information
-    gameResults.name = prompt('Please enter your name: ');
+    gameResults.name = prompt('Please enter your full name: ');
     gameResults.email = prompt('Please enter your email: ');
-    gameResults.course = prompt('Please enter your course(EX. BSP): ');
-    gameResults.year = prompt('Please enter your year(EX. 1, 2, 3, 4):');
-    gameResults.section = prompt('Please enter your section(EX. A,B,C,ETC.): ');
+    gameResults.college = prompt('Please enter your course, year, and section(EX. BSP 2B): ');
 
     // Add this code to handle start button click
     var startButton = document.getElementById('startButton');
