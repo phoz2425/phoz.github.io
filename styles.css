@@ -56,6 +56,9 @@ body {
 h1, h2 {
     color: #ff0202;
 }
+input[type="text"] {
+    font-size: 3em; /* Adjust as needed */
+}
 
 p {
     line-height: 1.6;
