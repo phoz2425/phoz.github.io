@@ -136,3 +136,4 @@ window.onload = function() {
 
     document.getElementById('startButton').addEventListener('click', startGame);
 };
+ 
