@@ -20,6 +20,22 @@ var gameResults = {
 
 var currentItem;
 
+var firebaseConfig = {
+    apiKey: "AIzaSyA4Ob5S6BZlYJ2d_0kRJd-7E5JLC2XUk-w",
+    authDomain: "lnsapp-e6d13.firebaseapp.com",
+    databaseURL: "https://lnsapp-e6d13-default-rtdb.firebaseio.com/",
+    projectId: "lnsapp-e6d13",
+    storageBucket: "lnsapp-e6d13.appspot.com",
+    messagingSenderId: "692983724897",
+    appId: "1:692983724897:web:cea4a895d7df8b414ca320"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+var database = firebase.database();
+
 function startGame() {
     var startButton = document.getElementById('startButton');
     if (startButton) {
@@ -51,25 +67,25 @@ function startGame() {
         document.body.appendChild(thankYouMessage);
     }
 }
-function storeResults() {
-    fetch('https://murmuring-coast-29338-fd46d18596e0.herokuapp.com/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(gameResults)
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    }).then(data => {
-        console.log('Results stored successfully');
-    }).catch(error => {
-        console.error('Error:', error);
-    });
+
+function saveGameResults() {
+    // Save the game results to the database
+    database.ref('gameResults/').push(gameResults);
 }
 
+
+function storeResults() {
+    fetch('path/to/your/php/script.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameResults),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
@@ -105,9 +121,9 @@ window.onload = function() {
 
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
-    gameResults.course = prompt("Please enter your course:");
-    gameResults.year = prompt("Please enter your year:");
-    gameResults.section = prompt("Please enter your section:");
+    gameResults.course = prompt("Please enter your course (ex. BSP):");
+    gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
+    gameResults.section = prompt("Please enter your section(ex. 2B):");
 
     document.getElementById('startButton').addEventListener('click', startGame);
 }
