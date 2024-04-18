@@ -79,8 +79,10 @@ function getRandomColor() {
     return color;
 }
 function saveGameResults() {
-    // Save the game results to the database
-    database.ref('gameResults/').push(gameResults);
+    var gameResultsRef = firebase.database().ref('gameResults/');
+    gameResultsRef.push(gameResults)
+        .then(() => console.log('Game results saved successfully.'))
+        .catch((error) => console.error('Error saving game results: ', error));
 }
 
 
@@ -128,11 +130,13 @@ function showTextbox() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', startGame);
+    
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
     gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
     gameResults.section = prompt("Please enter your section(ex. 2B):");
 
-    document.getElementById('startButton').addEventListener('click', startGame);
 });
