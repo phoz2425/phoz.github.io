@@ -42,6 +42,52 @@
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
         </script>
-        <script src="script.js"></script>
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Letter Sequencing Theory Website</title>
+                <link rel="stylesheet" type="text/css" href="styles.css">
+            </head>
+            <body>
+                <div id="game">
+                    <div id="instructions"></div>
+                    <div id="levelDisplay"></div>
+                    <div class="container">
+                        <h1>Letter Sequencing Theory Website</h1>
+                        <h2>About</h2>
+                        <p>In this test, you'll be shown several series of letters and digits, such as H 2 E 4. 
+                        After being shown a series, you'll be asked to type in a text box all of the letters and digits that were shown, 
+                        but with the digits coming first, ordered from smallest to largest, and then the letters in alphabetical order. 
+                        In this case, you'd have to type 24EH. Remember: you must first type all of the digits and only then type the letters, 
+                        both in ascending order (1 before 9, A before Z)!</p>
+                    </div>
+                </div>
+                <button id="startButton">Start Game</button>
+                <script type="module">
+                    // Import the functions you need from the SDKs you need
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+                    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+                    // TODO: Add SDKs for Firebase products that you want to use
+                    // https://firebase.google.com/docs/web/setup#available-libraries
+                  
+                    // Your web app's Firebase configuration
+                    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                    const firebaseConfig = {
+                      apiKey: "AIzaSyA4Ob5S6BZlYJ2d_0kRJd-7E5JLC2XUk-w",
+                      authDomain: "lnsapp-e6d13.firebaseapp.com",
+                      projectId: "lnsapp-e6d13",
+                      storageBucket: "lnsapp-e6d13.appspot.com",
+                      messagingSenderId: "692983724897",
+                      appId: "1:692983724897:web:cea4a895d7df8b414ca320",
+                      measurementId: "G-B0BBD5MF52"
+                    };
+                  
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    const analytics = getAnalytics(app);
+                </script>
+              <script type="module" src="script.js"></script>
+            </body>
+            </html>
     </body>
     </html>
