@@ -89,6 +89,7 @@ function startGame() {
             startButton.style.display = 'none';
         }
         document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
+        document.querySelector('#levels-output').textContent = JSON.stringify(levels);
 
         currentItem = levels[level][item].slice();
         var charIndex = 0;
