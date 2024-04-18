@@ -83,19 +83,13 @@ function showTextbox() {
 
 
 function startGame() {
-    var startButton = document.getElementById('startButton');
-    if (startButton) {
-        startButton.style.display = 'none';
-    }
-
-    // Hide the level display if the level is greater than 4
-    if (level > 4) {
-        document.getElementById('levelDisplay').style.display = 'none';
-    } else {
-        document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
-    }
-
     if (level < levels.length) {
+        var startButton = document.getElementById('startButton');
+        if (startButton) {
+            startButton.style.display = 'none';
+        }
+        document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
+
         currentItem = levels[level][item].slice();
         var charIndex = 0;
 
@@ -115,10 +109,21 @@ function startGame() {
         }, 1000);
     } else {
         saveGameResults();
-        // Display "THANK YOU!" message
+        // Remove everything from the body
+        document.body.innerHTML = '';
+        // Create a square container
+        var square = document.createElement('div');
+        square.style.width = '200px';
+        square.style.height = '200px';
+        square.style.border = '1px solid black';
+        square.style.display = 'flex';
+        square.style.justifyContent = 'center';
+        square.style.alignItems = 'center';
+        // Display "THANK YOU!" message inside the square
         var thankYouMessage = document.createElement('h1');
         thankYouMessage.textContent = 'THANK YOU!';
-        document.body.appendChild(thankYouMessage);
+        square.appendChild(thankYouMessage);
+        document.body.appendChild(square);
     }
 }
 
