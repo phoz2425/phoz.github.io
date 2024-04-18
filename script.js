@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+window.onload = function() {
     var startButton = document.getElementById('startButton');
     if (startButton) {
         startButton.addEventListener('click', startGame);
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     gameResults.course = prompt("Please enter your course (ex. BSP):");
     gameResults.year = prompt("Please enter your year (1st, 2nd ,3rd, or 4th):");
     gameResults.section = prompt("Please enter your section(ex. 2B):");
-});
+};
 
 
 var correctAnswers = 0;
