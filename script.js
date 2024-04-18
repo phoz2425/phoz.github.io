@@ -16,7 +16,7 @@ var gameResults = {
     section: '',
     correct: [],
     wrong: []
-};
+}; 
 
 var currentItem;
 
