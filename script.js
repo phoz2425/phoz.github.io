@@ -57,13 +57,11 @@ function showTextbox() {
             var answer = textbox.value.toUpperCase(); // Convert input to uppercase
 
             if (answer === currentItem.join('')) {
-                correctAnswers++;
-                gameResults.answers.push({level: level, item: item, answer: answer, correct: true});
-                } 
-            else 
-            {
-                gameResults.answers.push({level: level, item: item, answer: answer, correct: false});
-            }
+    correctAnswers++;
+    gameResults.answers.push({level: level, item: item, answer: answer, correct: true});
+} else {
+    gameResults.answers.push({level: level, item: item, answer: answer, correct: false});
+}
 
             document.querySelector('.container').removeChild(textbox);
 
@@ -81,7 +79,6 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
-
 function startGame() {
     if (level < levels.length) {
         var startButton = document.getElementById('startButton');
@@ -89,7 +86,6 @@ function startGame() {
             startButton.style.display = 'none';
         }
         document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
-        document.querySelector('#levels-output').textContent = JSON.stringify(levels);
 
         currentItem = levels[level][item].slice();
         var charIndex = 0;
@@ -109,31 +105,25 @@ function startGame() {
             }
         }, 1000);
     } else {
-    saveGameResults();
-    // Remove everything from the body
-    document.body.innerHTML = '';
-    // Style the body to use Flexbox for centering
-    document.body.style.display = 'flex';
-    document.body.style.justifyContent = 'center';
-    document.body.style.alignItems = 'center';
-    document.body.style.height = '100vh'; // Make the body take up the full viewport height
-    document.body.style.margin = '0'; // Remove margins
-    // Create a square container
-    var square = document.createElement('div');
-    square.style.width = '200px';
-    square.style.height = '200px';
-    square.style.border = '1px solid black';
-    square.style.display = 'flex';
-    square.style.justifyContent = 'center';
-    square.style.alignItems = 'center';
-    // Display "THANK YOU!" message inside the square
-    var thankYouMessage = document.createElement('h1');
-    thankYouMessage.textContent = 'THANK YOU!';
-    square.appendChild(thankYouMessage);
-    document.body.appendChild(square);
+        saveGameResults();
+        // Remove everything from the body
+        document.body.innerHTML = '';
+        // Create a square container
+        var square = document.createElement('div');
+        square.style.width = '200px';
+        square.style.height = '200px';
+        square.style.border = '1px solid black';
+        square.style.display = 'flex';
+        square.style.justifyContent = 'center';
+        square.style.alignItems = 'center';
+        // Display "THANK YOU!" message inside the square
+        var thankYouMessage = document.createElement('h1');
+        thankYouMessage.textContent = 'THANK YOU!';
+        square.appendChild(thankYouMessage);
+        document.body.appendChild(square);
+    }
 }
-}
-
+    
 window.onload = function() {
     // Initialize Firebase
     initializeApp(firebaseConfig);
