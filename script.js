@@ -126,7 +126,7 @@ window.onload = function() {
     gameResults.email = prompt('Please enter your email: ');
     gameResults.course = prompt('Please enter your course(EX. BSP): ');
     gameResults.year = prompt('Please enter your year(EX. 1, 2, 3, 4):');
-    gameResults.section = prompt('Please enter your section(EX. 2B): ');
+    gameResults.section = prompt('Please enter your section(EX. A,B,C,ETC.): ');
 
     // Add this code to handle start button click
     var startButton = document.getElementById('startButton');
