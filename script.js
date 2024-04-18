@@ -35,12 +35,6 @@ var firebaseConfig = {
 
 var database;
 
-window.onload = function() {
-    // Initialize Firebase
-    initializeApp(firebaseConfig);
-    // Get a reference to the database service
-    database = getDatabase();
-
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -50,14 +44,12 @@ function getRandomColor() {
     return color;
 }
 
-
 function saveGameResults() {
     var gameResultsRef = ref(database, 'gameResults/');
     push(gameResultsRef, gameResults)
         .then(() => console.log('Game results saved successfully.'))
         .catch((error) => console.error('Error saving game results: ', error));
 }
-
 
 function startGame() {
     var startButton = document.getElementById('startButton');
@@ -84,8 +76,8 @@ function startGame() {
                 setTimeout(showTextbox, 1000);
             }
         }, 1000);
-   } else {
-        storeResults();
+    } else {
+        saveGameResults();
         // Display "THANK YOU!" message
         var thankYouMessage = document.createElement('h1');
         thankYouMessage.textContent = 'THANK YOU!';
@@ -94,40 +86,44 @@ function startGame() {
 }
 
 window.onload = function() {
-function showTextbox() {
-    var textbox = document.createElement('input');
-    textbox.type = 'text';
-    textbox.maxLength = currentItem.length;
-    textbox.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            var answer = textbox.value.toUpperCase(); // Convert input to uppercase
+    // Initialize Firebase
+    initializeApp(firebaseConfig);
+    // Get a reference to the database service
+    database = getDatabase();
 
-            if (answer === currentItem.join('')) {
-                correctAnswers++;
-                gameResults.correct.push({level: level, item: item, answer: answer});
-            } else {
-                gameResults.wrong.push({level: level, item: item, answer: answer});
+    function showTextbox() {
+        var textbox = document.createElement('input');
+        textbox.type = 'text';
+        textbox.maxLength = currentItem.length;
+        textbox.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                var answer = textbox.value.toUpperCase(); // Convert input to uppercase
+
+                if (answer === currentItem.join('')) {
+                    correctAnswers++;
+                    gameResults.correct.push({level: level, item: item, answer: answer});
+                } else {
+                    gameResults.wrong.push({level: level, item: item, answer: answer});
+                }
+
+                document.querySelector('.container').removeChild(textbox);
+
+                if (item < levels[level].length - 1) {
+                    item++;
+                } else {
+                    level++;
+                    item = 0;
+                }
+
+                startGame();
             }
+        });
 
-            document.querySelector('.container').removeChild(textbox);
+        document.querySelector('.container').appendChild(textbox);
+    }
 
-            if (item < levels[level].length - 1) {
-                item++;
-            } else {
-                level++;
-                item = 0;
-            }
-
-            startGame();
-            const startButton = document.getElementById('startButton');
-            startButton.addEventListener('click', startGame);
-        }
-        }
-    });
-
-    document.querySelector('.container').appendChild(textbox);
     const startButton = document.getElementById('startButton');
-    startButton.addEventListener('click', startGame);
+    if (startButton) {
+        startButton.addEventListener('click', startGame);
+    }
 }
-}
-
