@@ -135,9 +135,12 @@ function showTextbox() {
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const startButton = document.getElementById('startButton');
-    startButton.addEventListener('click', startGame);
-
+    window.onload = function() {
+    var startButton = document.getElementById('startButton');
+    if (startButton) {
+        startButton.addEventListener('click', startGame);
+    }
+}
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
