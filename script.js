@@ -54,7 +54,7 @@ function showTextbox() {
     textbox.maxLength = currentItem.length;
     textbox.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            var answer = textbox.value.toUpperCase(); // Convert input to uppercase
+            var answer = textbox.value.toUpperCase();
 
             if (answer === currentItem.join('')) {
     correctAnswers++;
@@ -96,7 +96,7 @@ function startGame() {
             if (charIndex < currentItem.length) {
                 var container = document.querySelector('.container');
                 container.textContent = currentItem[charIndex];
-                container.style.color = getRandomColor(); // Set the text color to a random color
+                container.style.color = getRandomColor();
                 charIndex++;
             } else {
                 clearInterval(timer);
@@ -106,9 +106,7 @@ function startGame() {
         }, 1000);
     } else {
         saveGameResults();
-        // Remove everything from the body
         document.body.innerHTML = '';
-        // Create a square container
         var square = document.createElement('div');
         square.style.width = '200px';
         square.style.height = '200px';
@@ -116,10 +114,8 @@ function startGame() {
         square.style.display = 'flex';
         square.style.justifyContent = 'center';
         square.style.alignItems = 'center';
-        // Display "THANK YOU!" message inside the square
-        // Other code
 
-// Display "THANK YOU!" message inside the square
+
 var thankYouMessage = document.createElement('h1');
 thankYouMessage.textContent = 'THANK YOU!';
 thankYouMessage.style.color = 'red';
@@ -129,20 +125,15 @@ square.appendChild(thankYouMessage);
 }
     
 window.onload = function() {
-    // Initialize Firebase
     initializeApp(firebaseConfig);
-    // Get a reference to the database service
     database = getDatabase();
 
-    // Ask the user for their information
     gameResults.name = prompt('Please enter your full name: ');
     gameResults.email = prompt('Please enter your email: ');
     gameResults.college = prompt('Please enter your course, year, and section(EX. BSP 2B): ');
 
-    // Add this code to handle start button click
     var startButton = document.getElementById('startButton');
     startButton.addEventListener('click', function() {
-        // Call your function to start the game here
-        startGame(); // Replace this with the actual function name
+        startGame();
     });
 }
