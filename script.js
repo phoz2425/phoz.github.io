@@ -1,3 +1,5 @@
+
+
 var correctAnswers = 0;
 var level = 0;
 var item = 0;
@@ -19,6 +21,8 @@ var gameResults = {
 };
 
 var currentItem;
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
 
 var firebaseConfig = {
     apiKey: "AIzaSyA4Ob5S6BZlYJ2d_0kRJd-7E5JLC2XUk-w",
@@ -79,8 +83,8 @@ function getRandomColor() {
     return color;
 }
 function saveGameResults() {
-    var gameResultsRef = firebase.database().ref('gameResults/');
-    gameResultsRef.push(gameResults)
+    var gameResultsRef = ref(database, 'gameResults/');
+    push(gameResultsRef, gameResults)
         .then(() => console.log('Game results saved successfully.'))
         .catch((error) => console.error('Error saving game results: ', error));
 }
@@ -129,10 +133,11 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const startButton = document.getElementById('startButton');
     startButton.addEventListener('click', startGame);
-    
+
     gameResults.name = prompt("Please enter your name:");
     gameResults.email = prompt("Please enter your email:");
     gameResults.course = prompt("Please enter your course (ex. BSP):");
