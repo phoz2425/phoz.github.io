@@ -122,8 +122,10 @@ window.onload = function() {
     // Get a reference to the database service
     database = getDatabase();
 
-    const startButton = document.getElementById('startButton');
-    if (startButton) {
-        startButton.addEventListener('click', startGame);
-    }
+    // Add this code to handle start button click
+    var startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function() {
+        // Call your function to start the game here
+        startGame(); // Replace this with the actual function name
+    });
 }
