@@ -7,7 +7,6 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-
 #levelDisplay {
     position: absolute;
     top: 0;
@@ -23,7 +22,20 @@ body {
     align-items: center;
     height: 100%;
 }
-
+#startButton {
+    position: absolute; /* Absolute positioning */
+    bottom: 0; /* Position at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for the width of the button */
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #07cf18; /* Blue background */
+    color: rgb(255, 255, 255); /* White text */
+    cursor: pointer; /* Cursor changes to hand icon when over the button */
+    margin-top: 20px; /* Space between the button and the container */
+}
 /* ... rest of your CSS ... */
 #instructions {
     text-align: center;
@@ -40,20 +52,7 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* A little shadow for depth */
     text-align: center; /* Center align the text */
 }
-#startButton {
-    position: absolute; /* Absolute positioning */
-    bottom: 0; /* Position at the bottom */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for the width of the button */
-    font-size: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #07cf18; /* Blue background */
-    color: rgb(255, 255, 255); /* White text */
-    cursor: pointer; /* Cursor changes to hand icon when over the button */
-    margin-top: 20px; /* Space between the button and the container */
-}
+
 h1, h2 {
     color: #ff0202;
 }
