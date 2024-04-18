@@ -82,12 +82,19 @@ function showTextbox() {
     document.querySelector('.container').appendChild(textbox);
 }
 
+
 function startGame() {
     var startButton = document.getElementById('startButton');
     if (startButton) {
         startButton.style.display = 'none';
     }
-    document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
+
+    // Hide the level display if the level is greater than 4
+    if (level > 4) {
+        document.getElementById('levelDisplay').style.display = 'none';
+    } else {
+        document.getElementById('levelDisplay').textContent = 'Level: ' + (level + 1);
+    }
 
     if (level < levels.length) {
         currentItem = levels[level][item].slice();
@@ -115,6 +122,7 @@ function startGame() {
         document.body.appendChild(thankYouMessage);
     }
 }
+
 window.onload = function() {
     // Initialize Firebase
     initializeApp(firebaseConfig);
