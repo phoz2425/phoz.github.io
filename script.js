@@ -15,7 +15,7 @@ var correctAnswers = 0;
 var level = 0;
 var item = 0;
 var levels = [
-    [['2', 'H'], ['6', 'P']],
+    [['H', '2'], ['P', '6']],
     [['4', '7', 'O'], ['8', '5', 'K']],
     [['3', '7', 'A', 'Z'], ['7', '3', 'Q', 'W'], ['1', '4', 'S', 'D']],
     [['2', '4', '8', 'K', 'B', 'R'], ['6', '2', '3', 'L', 'B', 'J'], ['5', '2', '9', 'J', 'L', 'G']]
@@ -125,7 +125,7 @@ window.onload = function() {
     gameResults.name = prompt('Please enter your name: ');
     gameResults.email = prompt('Please enter your email: ');
     gameResults.course = prompt('Please enter your course(EX. BSP): ');
-    gameResults.year = prompt('Please enter your year(EX. 1ST):');
+    gameResults.year = prompt('Please enter your year(EX. 1, 2, 3, 4):');
     gameResults.section = prompt('Please enter your section(EX. 2B): ');
 
     // Add this code to handle start button click
