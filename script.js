@@ -132,6 +132,7 @@ function startGame() {
     square.appendChild(thankYouMessage);
     document.body.appendChild(square);
 }
+}
 
 window.onload = function() {
     // Initialize Firebase
