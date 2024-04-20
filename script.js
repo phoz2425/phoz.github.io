@@ -47,8 +47,19 @@ function checkAnswer(userAnswer, correctAnswer) {
     // Convert userAnswer to uppercase string
     userAnswer = userAnswer.toUpperCase();
 
-    // Convert the correctAnswer array to string
-    correctAnswer = correctAnswer.join('');
+    // Split userAnswer into numbers and letters, sort them, and join them back
+    let userAnswerNumbers = userAnswer.match(/\d+/g);
+    userAnswerNumbers = userAnswerNumbers ? userAnswerNumbers.sort().join('') : '';
+    let userAnswerLetters = userAnswer.match(/[a-zA-Z]+/g);
+    userAnswerLetters = userAnswerLetters ? userAnswerLetters.sort().join('') : '';
+    userAnswer = userAnswerNumbers + userAnswerLetters;
+
+    // Split correctAnswer into numbers and letters, sort them, and join them back
+    let correctAnswerNumbers = correctAnswer.match(/\d+/g);
+    correctAnswerNumbers = correctAnswerNumbers ? correctAnswerNumbers.sort().join('') : '';
+    let correctAnswerLetters = correctAnswer.match(/[a-zA-Z]+/g);
+    correctAnswerLetters = correctAnswerLetters ? correctAnswerLetters.sort().join('') : '';
+    correctAnswer = correctAnswerNumbers + correctAnswerLetters;
 
     if (userAnswer === correctAnswer) {
         gameResults.correctAnswers.push({level: level, item: item, answer: userAnswer, correct: true});
