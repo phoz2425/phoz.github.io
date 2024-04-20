@@ -142,7 +142,7 @@ function startGame() {
 
 var thankYouMessage = document.createElement('h1');
 thankYouMessage.textContent = 'Thank you for participating in our test!';
-thankYouMessage.style.color = 'white';
+thankYouMessage.style.color = 'purple';
 thankYouMessage.style.textAlign = 'center'; // Add this line to center the text
 square.appendChild(thankYouMessage);
 document.body.appendChild(square);
