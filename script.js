@@ -57,6 +57,20 @@ function checkAnswer(userAnswer, correctAnswer) {
         return a - b;
     });
 
+    // Sort the user's answer in the same way
+    userAnswer = userAnswer.split('').sort((a, b) => {
+        if (isNaN(a) && isNaN(b)) {
+            return a.localeCompare(b);
+        }
+        if (isNaN(a)) {
+            return 1;
+        }
+        if (isNaN(b)) {
+            return -1;
+        }
+        return a - b;
+    }).join('');
+
     if (userAnswer === correctAnswer.join('')) {
         gameResults.correctAnswers.push({level: level, item: item, answer: userAnswer, correct: true});
         gameResults.correctItemCount++; // Increment the correct item count
@@ -65,12 +79,11 @@ function checkAnswer(userAnswer, correctAnswer) {
     }
 }
 
-
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
     textbox.maxLength = currentItem.length;
-    textbox.style.color = 'white'; // Change text color to white
+    textbox.style.color = getRandomColor(); // Change text color to random
     textbox.addEventListener('keyup', function(event) { // Change from 'keydown' to 'keyup'
         if (event.key === 'Enter') {
             var answer = textbox.value.toUpperCase();
