@@ -44,11 +44,11 @@ function saveGameResults() {
 }
 
 function checkAnswer(userAnswer, correctAnswer) {
-    // Convert correctAnswer array to string and sort it
-    correctAnswer = correctAnswer.join('').split('').sort().join('');
-
-    // Sort the user's answer
+    // Convert userAnswer to array, sort it, and join it back to string
     userAnswer = userAnswer.split('').sort().join('');
+
+    // Sort the correctAnswer array and join it back to string
+    correctAnswer = correctAnswer.sort().join('');
 
     if (userAnswer === correctAnswer) {
         gameResults.correctAnswers.push({level: level, item: item, answer: userAnswer, correct: true});
