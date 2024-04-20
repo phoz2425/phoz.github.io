@@ -44,36 +44,14 @@ function saveGameResults() {
 }
 
 function checkAnswer(userAnswer, correctAnswer) {
-    correctAnswer.sort((a, b) => {
-        if (isNaN(a) && isNaN(b)) {
-            return a.localeCompare(b);
-        }
-        if (isNaN(a)) {
-            return 1;
-        }
-        if (isNaN(b)) {
-            return -1;
-        }
-        return a - b;
-    });
+    // Convert correctAnswer array to string and sort it
+    correctAnswer = correctAnswer.join('').split('').sort().join('');
 
-    // Sort the user's answer in the same way
-    userAnswer = userAnswer.split('').sort((a, b) => {
-        if (isNaN(a) && isNaN(b)) {
-            return a.localeCompare(b);
-        }
-        if (isNaN(a)) {
-            return 1;
-        }
-        if (isNaN(b)) {
-            return -1;
-        }
-        return a - b;
-    }).join('');
+    // Sort the user's answer
+    userAnswer = userAnswer.split('').sort().join('');
 
-    if (userAnswer === correctAnswer.join('')) {
+    if (userAnswer === correctAnswer) {
         gameResults.correctAnswers.push({level: level, item: item, answer: userAnswer, correct: true});
-        gameResults.correctItemCount++; // Increment the correct item count
     } else {
         gameResults.wrongAnswers.push({level: level, item: item, answer: userAnswer, correct: false});
     }
