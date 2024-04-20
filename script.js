@@ -117,10 +117,11 @@ function startGame() {
 
 
 var thankYouMessage = document.createElement('h1');
-thankYouMessage.textContent = 'THANK YOU!';
-thankYouMessage.style.color = 'red';
+thankYouMessage.textContent = 'Thank you for participating in our test!';
+thankYouMessage.style.color = 'purple';
+thankYouMessage.style.textAlign = 'center';
 square.appendChild(thankYouMessage);
-        document.body.appendChild(square);
+document.body.appendChild(square);
     }
 }
     
