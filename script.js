@@ -6,7 +6,7 @@ var gameResults = {
     email: '',
     college: '',
     answers: [],
-    coorectAnswers: [],
+    correctAnswers: [],
     wrongAnswers: [],
     correctItemCount: 0
 };
