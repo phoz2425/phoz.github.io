@@ -70,24 +70,35 @@ function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
     textbox.maxLength = currentItem.length;
-    textbox.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        var answer = textbox.value.toUpperCase();
-        checkAnswer(answer, currentItem.slice()); // Use slice to create a copy of currentItem
+    textbox.style.color = 'white'; // Change text color to white
+    textbox.addEventListener('keyup', function(event) { // Change from 'keydown' to 'keyup'
+        if (event.key === 'Enter') {
+            var answer = textbox.value.toUpperCase();
+            checkAnswer(answer, currentItem.slice()); // Use slice to create a copy of currentItem
 
-        document.querySelector('.container').removeChild(textbox);
+            document.querySelector('.container').removeChild(textbox);
 
-        if (item < levels[level].length - 1) {
-            item++;
-        } else {
-            level++;
-            item = 0;
+            if (item < levels[level].length - 1) {
+                item++;
+            } else {
+                level++;
+                item = 0;
+            }
+
+            startGame();
         }
+    });
 
-        startGame();
-    }
-});
     document.querySelector('.container').appendChild(textbox);
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 function startGame() {
@@ -107,7 +118,7 @@ function startGame() {
             if (charIndex < currentItem.length) {
                 var container = document.querySelector('.container');
                 container.textContent = currentItem[charIndex];
-                container.style.color = 'white';
+                container.style.color = getRandomColor(); // Change color to random
                 charIndex++;
             } else {
                 clearInterval(timer);
@@ -115,6 +126,9 @@ function startGame() {
                 setTimeout(showTextbox, 1000);
             }
         }, 1000);
+
+        
+    
     } else {
         saveGameResults();
         document.body.innerHTML = '';
