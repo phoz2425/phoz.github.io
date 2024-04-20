@@ -70,24 +70,23 @@ function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
     textbox.maxLength = currentItem.length;
-    textbox.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            var answer = textbox.value.toUpperCase();
-            checkAnswer(answer, currentItem.slice()); // Use slice to create a copy of currentItem
+    textbox.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        var answer = textbox.value.toUpperCase();
+        checkAnswer(answer, currentItem.slice()); // Use slice to create a copy of currentItem
 
-            document.querySelector('.container').removeChild(textbox);
+        document.querySelector('.container').removeChild(textbox);
 
-            if (item < levels[level].length - 1) {
-                item++;
-            } else {
-                level++;
-                item = 0;
-            }
-
-            startGame();
+        if (item < levels[level].length - 1) {
+            item++;
+        } else {
+            level++;
+            item = 0;
         }
-    });
 
+        startGame();
+    }
+});
     document.querySelector('.container').appendChild(textbox);
 }
 
