@@ -47,6 +47,9 @@ function checkAnswer(userAnswer, correctAnswer) {
     // Convert userAnswer to uppercase string
     userAnswer = userAnswer.toUpperCase();
 
+    // Convert correctAnswer to string
+    correctAnswer = correctAnswer.join('');
+
     // Split userAnswer into numbers and letters, sort them, and join them back
     let userAnswerNumbers = userAnswer.match(/\d+/g);
     userAnswerNumbers = userAnswerNumbers ? userAnswerNumbers.sort().join('') : '';
