@@ -56,6 +56,7 @@ function checkAnswer(userAnswer, correctAnswer) {
         gameResults.wrongAnswers.push({level: level, item: item, answer: userAnswer, correct: false});
     }
 }
+
 function showTextbox() {
     var textbox = document.createElement('input');
     textbox.type = 'text';
