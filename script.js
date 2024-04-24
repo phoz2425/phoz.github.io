@@ -8,7 +8,8 @@ var gameResults = {
     answers: [],
     correctAnswers: [],
     wrongAnswers: [],
-    correctItemCount: 0
+    correctItemCount: 0,
+    correctCount: 0 // Initialize correctCount
 };
 
 var theAnswers = [
@@ -59,6 +60,7 @@ function checkAnswer(userAnswer, level, item) {
     if (userAnswer === correctAnswer) {
         console.log("Correct answer");
         gameResults.correctAnswers.push({level: level, item: item, answer: userAnswer, correct: true}); // Add correct answer to gameResults
+        gameResults.correctCount++; // Increment correctCount
     } else {
         gameResults.wrongAnswers.push({level: level, item: item, answer: userAnswer, correct: false});
     }
@@ -130,6 +132,12 @@ function startGame() {
     } else {
         saveGameResults();
         document.body.innerHTML = '';
+        document.body.style.display = 'flex';
+        document.body.style.justifyContent = 'center';
+        document.body.style.alignItems = 'center';
+        document.body.style.height = '100vh';
+        document.body.style.margin = '0';
+
         var square = document.createElement('div');
         square.style.width = '200px';
         square.style.height = '200px';
@@ -138,12 +146,12 @@ function startGame() {
         square.style.justifyContent = 'center';
         square.style.alignItems = 'center';
 
-var thankYouMessage = document.createElement('h1');
-thankYouMessage.textContent = 'Thank you for participating in our test!';
-thankYouMessage.style.color = 'purple';
-thankYouMessage.style.textAlign = 'center'; // Add this line to center the text
-square.appendChild(thankYouMessage);
-document.body.appendChild(square);
+        var thankYouMessage = document.createElement('h1');
+        thankYouMessage.textContent = 'Thank you for participating in our test!';
+        thankYouMessage.style.color = 'white'; 
+        thankYouMessage.style.textAlign = 'center'; 
+        square.appendChild(thankYouMessage);
+        document.body.appendChild(square);
     }
 }
     
