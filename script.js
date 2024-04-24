@@ -9,7 +9,8 @@ var gameResults = {
     correctAnswers: [],
     wrongAnswers: [],
     correctItemCount: 0,
-    correctCount: 0 // Initialize correctCount
+    correctCount: 0, // Initialize correctCount
+    gameCode: ''
 };
 
 var theAnswers = [
@@ -130,6 +131,7 @@ function startGame() {
         
     
     } else {
+        gameResults.gameCode = "Colored";
         saveGameResults();
         document.body.innerHTML = '';
         document.body.style.display = 'flex';
